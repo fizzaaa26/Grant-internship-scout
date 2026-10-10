@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant & Internship AI Scout | Automated Career Opportunities</title>
+    <meta name="description" content="Daily AI-scouted software engineering internships, electronics grants, and student fellowships.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#EEF2FF',
+                            100: '#E0E7FF',
+                            400: '#818CF8',
+                            500: '#6366F1',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                            900: '#312E81',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            muted: '#374151'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Supabase JS Client v2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .glass-header {
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8 0%, #C084FC 50%, #F472B6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-50 glass-header border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-display font-bold tracking-tight text-white flex items-center gap-2">
+                        Grant & Internship <span class="gradient-text">AI Scout</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Automated Daily Student Opportunity Intelligence</p>
+                </div>
+            </div>
+
+            <!-- Header Badges & Actions -->
+            <div class="flex items-center space-x-3">
+                <div id="connectionStatus" class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span id="connectionText">Live Supabase Sync</span>
+                </div>
+                
+                <button onclick="toggleConfigModal()" class="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Config</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section & Stats -->
+    <section class="relative py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold uppercase tracking-wider mb-4">
+                <i class="fa-solid fa-wand-magic-sparkles text-brand-400"></i>
+                <span>AI-Powered Extraction Engine</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white tracking-tight leading-tight">
+                Discover Fresh <span class="gradient-text">Software & Electronics</span> Opportunities
+            </h2>
+            <p class="mt-4 text-base sm:text-lg text-slate-400">
+                Automatically scraped daily via Tavily API, structured by Gemini 2.5 Flash, and updated live via Supabase.
+            </p>
+        </div>
+
+        <!-- Live Metrics Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-xs uppercase font-semibold text-slate-400 tracking-wider">Total Opportunities</div>
+                <div id="statTotal" class="text-3xl font-display font-bold text-white mt-1">--</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-xs uppercase font-semibold text-indigo-400 tracking-wider">Software Engineering</div>
+                <div id="statSoftware" class="text-3xl font-display font-bold text-indigo-400 mt-1">--</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-xs uppercase font-semibold text-purple-400 tracking-wider">Electronics & Hardware</div>
+                <div id="statHardware" class="text-3xl font-display font-bold text-purple-400 mt-1">--</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-xs uppercase font-semibold text-emerald-400 tracking-wider">Grants & Fellowships</div>
+                <div id="statGrants" class="text-3xl font-display font-bold text-emerald-400 mt-1">--</div>
+            </div>
+        </div>
+
+        <!-- Search Bar & Tag Filter Bar -->
+        <div class="space-y-4 max-w-4xl mx-auto">
+            <!-- Search Bar Input -->
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </div>
+                <input 
+                    type="text" 
+                    id="searchInput"
+                    placeholder="Search by job title, company, technology, or location..." 
+                    class="w-full pl-11 pr-24 py-4 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all shadow-inner text-sm sm:text-base"
+                >
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden text-slate-400 hover:text-white px-2 py-1 text-xs bg-slate-800 rounded">Clear</button>
+                </div>
+            </div>
+
+            <!-- Tag Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="tagFilters">
+                <!-- JS Populated Tag Pills -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Opportunities Display Grid -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16">
+        <!-- Error Alert Banner (Hidden by Default) -->
+        <div id="errorAlert" class="hidden mb-8 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 flex items-start space-x-3">
+            <i class="fa-solid fa-triangle-exclamation text-xl mt-0.5 text-rose-400"></i>
+            <div class="flex-1">
+                <h4 class="font-semibold text-sm">Database Connection Error</h4>
+                <p id="errorMessage" class="text-xs text-rose-300/80 mt-1">Unable to load data from Supabase. Please verify your SUPABASE_URL and SUPABASE_ANON_KEY.</p>
+            </div>
+        </div>
+
+        <!-- Skeleton Loading State -->
+        <div id="loadingSkeleton" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 6 Pulsing Skeletons -->
+            <script>
+                for(let i=0; i<6; i++){
+                    document.write(`
+                        <div class="glass-card p-6 rounded-2xl animate-pulse space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 bg-slate-800 rounded-xl"></div>
+                                <div class="h-4 w-20 bg-slate-800 rounded"></div>
+                            </div>
+                            <div class="h-6 w-3/4 bg-slate-800 rounded"></div>
+                            <div class="h-4 w-1/2 bg-slate-800 rounded"></div>
+                            <div class="space-y-2 pt-2">
+                                <div class="h-3 w-full bg-slate-800 rounded"></div>
+                                <div class="h-3 w-5/6 bg-slate-800 rounded"></div>
+                            </div>
+                            <div class="flex gap-2 pt-2">
+                                <div class="h-5 w-16 bg-slate-800 rounded-full"></div>
+                                <div class="h-5 w-16 bg-slate-800 rounded-full"></div>
+                            </div>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+
+        <!-- Empty Results State (Hidden by Default) -->
+        <div id="emptyState" class="hidden text-center py-16 glass-card rounded-2xl max-w-lg mx-auto">
+            <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto mb-4 text-slate-400 text-2xl">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">No Opportunities Found</h3>
+            <p class="text-slate-400 text-sm mt-1 px-4">No positions matched your current search and tag filters.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs rounded-lg transition-colors">
+                Reset All Filters
+            </button>
+        </div>
+
+        <!-- Opportunities Grid Container -->
+        <div id="opportunitiesGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards populated dynamically by app.js -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dark-border py-8 text-center text-xs text-slate-500 bg-slate-950/60">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p>&copy; 2026 Grant &amp; Internship AI Scout. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6 text-slate-400">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-bolt text-amber-400"></i> Tavily Search</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-brain text-purple-400"></i> Gemini 2.5 Flash</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-database text-emerald-400"></i> Supabase</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Configuration Modal (For editing keys on live preview) -->
+    <div id="configModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-brand-400"></i> Supabase Configuration
+                </h3>
+                <button onclick="toggleConfigModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+                By default, the dashboard fetches data using credentials configured in <code class="text-brand-400 bg-slate-800 px-1 py-0.5 rounded">docs/app.js</code>. You can override them here for testing:
+            </p>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">SUPABASE_URL</label>
+                    <input type="text" id="cfgUrl" placeholder="https://xyzcompany.supabase.co" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">SUPABASE_ANON_KEY</label>
+                    <input type="text" id="cfgKey" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs text-white focus:outline-none focus:border-brand-500">
+                </div>
+            </div>
+            <div class="flex space-x-3 pt-2">
+                <button onclick="saveCustomConfig()" class="flex-1 py-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs rounded-lg transition-colors">
+                    Save &amp; Reload
+                </button>
+                <button onclick="resetCustomConfig()" class="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-lg transition-colors">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App JavaScript Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
